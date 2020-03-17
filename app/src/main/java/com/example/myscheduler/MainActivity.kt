@@ -31,6 +31,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ScheduleEditActivity::class.java)
             startActivity(intent)
         }
+
+        adapter.setOnItemClickListener { id -> //コールバックの画面遷移
+            val intent = Intent(this, ScheduleEditActivity::class.java)
+                .putExtra("schedule_id", id)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroy() { //アクティビティの終了処理

@@ -12,6 +12,12 @@ import io.realm.RealmRecyclerViewAdapter
 class ScheduleAdapter (data: OrderedRealmCollection<Schedule>) : //総称型
     RealmRecyclerViewAdapter<Schedule, ScheduleAdapter.ViewHolder>(data, true){//自動更新
 
+    private var listener: ((Long?)-> Unit)? = null
+
+    fun setOnItemClickListener(listener:(Long?) -> Unit ){ //コールバック関数
+        this.listener = listener //格納しておく
+    }
+
     init {                      //イニシャライザ
         setHasStableIds(true) //自動更新
     }
@@ -34,6 +40,9 @@ class ScheduleAdapter (data: OrderedRealmCollection<Schedule>) : //総称型
         val schedule: Schedule? = getItem(position)
         holder.date.text = DateFormat.format("yyyy/MM/dd", schedule?.date)
         holder.title.text = schedule?.title
+        holder.itemView.setOnClickListener { //コールバック
+            listener?.invoke(schedule?.id) //invokeメソッド
+        }
 
         //To change body of created functions use File | Settings | File Templates.
     }
