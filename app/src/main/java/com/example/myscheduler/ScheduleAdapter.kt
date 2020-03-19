@@ -19,7 +19,7 @@ class ScheduleAdapter (data: OrderedRealmCollection<Schedule>) : //総称型
     }
 
     init {                      //イニシャライザ
-        setHasStableIds(true) //自動更新
+        setHasStableIds(true)
     }
 
     class ViewHolder(cell: View) : RecyclerView.ViewHolder(cell) {
