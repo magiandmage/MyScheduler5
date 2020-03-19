@@ -46,6 +46,7 @@ class ScheduleEditActivity : AppCompatActivity() {
                 .setAction("戻る") { finish() }
                 .setActionTextColor(Color.YELLOW)
                 .show()
+        }
 
             save.setOnClickListener { view: View ->
                 when (scheduleId) {
@@ -83,7 +84,6 @@ class ScheduleEditActivity : AppCompatActivity() {
                     }
                 }
             }
-        }
     }
 
     override fun onDestroy() { //閉じる
