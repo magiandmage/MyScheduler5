@@ -27,7 +27,7 @@ class ScheduleEditActivity : AppCompatActivity() {
         if (scheduleId != -1L) { //idが-1だったら新規登録
             val schedule = realm.where<Schedule>()
                 .equalTo("id", scheduleId).findFirst()
-            dateEdit.setText(DateFormat.format("yyyy/MM/dd", schedule?.date))
+            dateEdit.setText(DateFormat.format("yyyyMMdd", schedule?.date))
             titleEdit.setText(schedule?.title)
             detailEdit.setText(schedule?.detail)
             delete.visibility = View.VISIBLE
@@ -42,7 +42,7 @@ class ScheduleEditActivity : AppCompatActivity() {
                     ?.findFirst()
                     ?.deleteFromRealm()
             }
-            Snackbar.make(view, "削除しました", Snackbar.LENGTH_SHORT)
+            Snackbar.make(view, "削除しました", Snackbar.LENGTH_LONG)
                 .setAction("戻る") { finish() }
                 .setActionTextColor(Color.YELLOW)
                 .show()
@@ -56,12 +56,12 @@ class ScheduleEditActivity : AppCompatActivity() {
                             val nextId = (maxId?.toLong() ?: 0L) + 1
                             val schedule = db.createObject<Schedule>(nextId) //データを1行追加
                             val date =
-                                dateEdit.text.toString().toDate("yyyy/MM/dd") //scheduleオブジェクトに値を設定
+                                dateEdit.text.toString().toDate("yyyyMMdd") //scheduleオブジェクトに値を設定
                             if (date != null) schedule.date = date
                             schedule.title = titleEdit.text.toString()
                             schedule.detail = detailEdit.text.toString()
                         }
-                        Snackbar.make(view, "追加しました", Snackbar.LENGTH_SHORT)
+                        Snackbar.make(view, "追加しました", Snackbar.LENGTH_LONG)
                             .setAction("戻る") { finish() }
                             .setActionTextColor(Color.YELLOW)
                             .show()
@@ -77,7 +77,7 @@ class ScheduleEditActivity : AppCompatActivity() {
                             schedule?.detail = detailEdit.text.toString()
 
                         }
-                        Snackbar.make(view, "更新しました", Snackbar.LENGTH_SHORT)
+                        Snackbar.make(view, "更新しました", Snackbar.LENGTH_LONG)
                             .setAction("戻る") { finish() }
                             .setActionTextColor(Color.YELLOW)
                             .show()
